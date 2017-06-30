@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class BarrelSpinner : MonoBehaviour {
 
-	public int rpm;
+	public float rpm;
 	private float rps;
 	private Vector3 eulerAngle;
 
-	public BulletSpawner bulletSpawner;
+	public MinigunScript gun;
 
 	// Use this for initialization
 	void Start () {
-		rpm = bulletSpawner.rpm;
-		rps = rpm / 60f;
+
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-		
-		transform.Rotate(Vector3.forward * Time.deltaTime * (rps * 360));
+	void FixedUpdate () {
+		rpm = gun.rpm;
+		rps = rpm / 60f;
+		transform.Rotate(Vector3.forward * Time.fixedDeltaTime * (rps * 360));
 	}
 }

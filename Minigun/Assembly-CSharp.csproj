@@ -46,9 +46,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BarrelSpinner.cs" />
-     <Compile Include="Assets\BulletScript.cs" />
-     <Compile Include="Assets\BulletSpawner.cs" />
+     <Compile Include="Assets\Scripts\BarrelSpinner.cs" />
+     <Compile Include="Assets\Scripts\BulletScript.cs" />
+     <Compile Include="Assets\Scripts\BulletSpawner.cs" />
+     <Compile Include="Assets\Scripts\EnemyScript.cs" />
+     <Compile Include="Assets\Scripts\MinigunScript.cs" />
+     <Compile Include="Assets\Scripts\TurretSpinner.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
