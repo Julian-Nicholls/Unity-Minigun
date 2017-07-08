@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\BulletScript.cs" />
      <Compile Include="Assets\Scripts\BulletSpawner.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
+     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\MinigunScript.cs" />
      <Compile Include="Assets\Scripts\TurretSpinner.cs" />
  <Reference Include="UnityEngine.UI">
