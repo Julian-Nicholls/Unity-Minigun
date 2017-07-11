@@ -25,7 +25,7 @@ public class BulletScript : MonoBehaviour {
 	void OnCollisionEnter(Collision collision){
 		if (collision.gameObject.tag == "EnemyCollider") {
 			collision.gameObject.SendMessageUpwards ("takeDamage");
-			Debug.Log ("collision!");
+			//Debug.Log ("collision!");
 		}
 	}
 }

@@ -8,7 +8,7 @@ public class BarrelSpinner : MonoBehaviour {
 	private float rps;
 	private Vector3 eulerAngle;
 
-	public MinigunScript gun;
+	public ShootControlScript scs;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,7 @@ public class BarrelSpinner : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		rpm = gun.rpm;
+		rpm = scs.rpm;
 		rps = rpm / 60f;
 		transform.Rotate(Vector3.forward * Time.fixedDeltaTime * (rps * 360));
 	}

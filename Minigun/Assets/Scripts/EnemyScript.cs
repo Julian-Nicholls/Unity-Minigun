@@ -14,14 +14,17 @@ public class EnemyScript : MonoBehaviour {
 	float elapsedTime = 0;
 
 	public float speed;
+	public float minDistance;
 	public GameObject minigun;
+
+	public ScoreKeeper scoreKeeper;
 
 	// Use this for initialization
 	void Start () {
 		renderer = GetComponentInChildren<MeshRenderer> ();
 		renderer.material = enemyMaterials [health];
 		transform.LookAt (minigun.transform);
-
+		scoreKeeper = FindObjectOfType<ScoreKeeper> ();
 	}
 	
 	// Update is called once per frame
@@ -34,29 +37,32 @@ public class EnemyScript : MonoBehaviour {
 			elapsedTime = 0;
 		}
 
-		if (strategy == 0) {
-			// straight ahead
+		if (Vector3.Distance (transform.position, minigun.transform.position) > minDistance) {
+			
+			if (strategy == 0) {
+				// straight ahead
 
-			transform.Translate(Vector3.forward*Time.deltaTime*speed);
+				transform.Translate (Vector3.forward * Time.deltaTime * speed);
+			}
+			if (strategy == 1) {
+				//wide flank
+
+
+			}
+			if (strategy == 2) {
+				//narrow flank
+
+
+			}
 		}
-		if (strategy == 1) {
-			//wide flank
-
-
-		}
-		if (strategy == 2) {
-			//narrow flank
-
-
-		}
-
 	}
 
 	void takeDamage(){
 		health--;
 
-		if (health == -1) {
+		if (health < 0) {
 			Destroy (gameObject);
+			scoreKeeper.SendMessage ("incrementScore");
 		} else {
 			renderer.material = enemyMaterials [health];
 		}

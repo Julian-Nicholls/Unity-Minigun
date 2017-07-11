@@ -1,0 +1,4 @@
+whole minigun spins instead of just firing chamber
+spins too fast
+needs score gui
+gui doesn't fit at 1:1
