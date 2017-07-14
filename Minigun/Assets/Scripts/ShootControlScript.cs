@@ -25,9 +25,13 @@ public class ShootControlScript : MonoBehaviour {
 	bool isClicked;
 	ButtonListener bl;
 
+	public Overheat overheat;
+	bool canFire;
+
 
 	void Start(){
 		bl = shootButton.GetComponent<ButtonListener>();
+		canFire = true;
 	}
 
 	void FixedUpdate () {
@@ -47,19 +51,31 @@ public class ShootControlScript : MonoBehaviour {
 
 		if (isClicked && timeSinceShot > (1 / rps) / 4) {
 			timeSinceShot = 0;
-			Fire ();
+
+			if (canFire) {
+				Fire ();
+			} else {
+				Debug.Log ("overheated");
+			}
 		}
 
 	}
 
 	void Fire(){
-		GameObject bullet = Instantiate (bulletPrefab, bulletSpawner.transform);
+		
+		if (canFire) {
+			GameObject bullet = Instantiate (bulletPrefab, bulletSpawner.transform);
 
-		bullet.GetComponent<Rigidbody> ().AddForce (bulletForce * (firingChamber.transform.forward + 
-			new Vector3(Random.Range(-bulletVarience, bulletVarience),
-				Random.Range(-bulletVarience, bulletVarience),
-				Random.Range(-bulletVarience, bulletVarience))));
+			bullet.GetComponent<Rigidbody> ().AddForce (bulletForce * (firingChamber.transform.forward + 
+				new Vector3(Random.Range(-bulletVarience, bulletVarience),
+					Random.Range(-bulletVarience, bulletVarience),
+					Random.Range(-bulletVarience, bulletVarience))));
 
-		//bullet.transform.forward
+			overheat.SendMessage ("shotFired");
+		}
+	}
+
+	public void changeCanFire (){
+		canFire = !canFire;
 	}
 }
