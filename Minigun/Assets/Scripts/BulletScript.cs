@@ -26,6 +26,7 @@ public class BulletScript : MonoBehaviour {
 		if (collision.gameObject.tag == "EnemyCollider") {
 			collision.gameObject.SendMessageUpwards ("takeDamage");
 			//Debug.Log ("collision!");
+			Destroy(gameObject);
 		}
 	}
 }
