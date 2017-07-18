@@ -9,6 +9,12 @@ public class LevelLauncher : MonoBehaviour {
 	int numOfEnemies;
 	int numOfSpawners;
 
+	public void setup(int l, int noe, int nos){
+		level = l;
+		numOfEnemies = noe;
+		numOfSpawners = nos;
+	}
+
 	// Use this for initialization
 	void Start () {
 		
@@ -25,6 +31,7 @@ public class LevelLauncher : MonoBehaviour {
 		PlayerPrefs.SetInt ("numOfEnemies", numOfEnemies);
 		PlayerPrefs.SetInt ("numOfSpawners", numOfSpawners);
 
-		SceneManager.LoadScene (level);
+		SceneManager.LoadSceneAsync (1, LoadSceneMode.Single);
+		SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
 	}
 }
