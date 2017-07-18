@@ -48,15 +48,18 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BarrelSpinner.cs" />
      <Compile Include="Assets\Scripts\BulletScript.cs" />
-     <Compile Include="Assets\Scripts\ButtonListener.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
      <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\Scripts\MinigunScript.cs" />
      <Compile Include="Assets\Scripts\ObstacleSpawner.cs" />
      <Compile Include="Assets\Scripts\Overheat.cs" />
-     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
-     <Compile Include="Assets\Scripts\ShootControlScript.cs" />
-     <Compile Include="Assets\Scripts\SpinControlScript.cs" />
+     <Compile Include="Assets\Scripts\UI\ButtonListener.cs" />
+     <Compile Include="Assets\Scripts\UI\ChangeUI.cs" />
+     <Compile Include="Assets\Scripts\UI\LevelButtonSpawner.cs" />
+     <Compile Include="Assets\Scripts\UI\LevelLauncher.cs" />
+     <Compile Include="Assets\Scripts\UI\ScoreKeeper.cs" />
+     <Compile Include="Assets\Scripts\UI\ShootControlScript.cs" />
+     <Compile Include="Assets\Scripts\UI\SpinControlScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
