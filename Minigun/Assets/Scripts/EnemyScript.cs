@@ -12,19 +12,26 @@ public class EnemyScript : MonoBehaviour {
 	int strategies = 0;
 	int strategy;
 	float elapsedTime = 0;
+	bool balanced;
+	Transform parentTransform;
 
+	public float getUpSpeed;
 	public float speed;
 	public float minDistance;
 	public GameObject minigun;
 
+	public HealthKeeper healthKeeper;
 	public ScoreKeeper scoreKeeper;
 
 	// Use this for initialization
 	void Start () {
-		renderer = GetComponentInChildren<MeshRenderer> ();
+		renderer = GetComponent<MeshRenderer> ();
 		renderer.material = enemyMaterials [health];
 		transform.LookAt (minigun.transform);
 		scoreKeeper = FindObjectOfType<ScoreKeeper> ();
+		healthKeeper = FindObjectOfType<HealthKeeper> ();
+
+		parentTransform = GetComponentInParent<Transform> ();
 	}
 	
 	// Update is called once per frame
@@ -33,16 +40,16 @@ public class EnemyScript : MonoBehaviour {
 
 		if (elapsedTime > strategyTimer) {
 			strategy = Random.Range (0, strategies);
-			transform.LookAt (minigun.transform);
+			parentTransform.LookAt (minigun.transform);
 			elapsedTime = 0;
 		}
 
-		if (Vector3.Distance (transform.position, minigun.transform.position) > minDistance) {
+		if (Vector3.Distance (parentTransform.position, minigun.transform.position) > minDistance) {
 			
 			if (strategy == 0) {
 				// straight ahead
 
-				transform.Translate (Vector3.forward * Time.deltaTime * speed);
+				parentTransform.Translate (Vector3.forward * Time.deltaTime * speed);
 			}
 			if (strategy == 1) {
 				//wide flank
@@ -54,6 +61,16 @@ public class EnemyScript : MonoBehaviour {
 
 
 			}
+		}
+
+
+		if (transform.up != Vector3.up) {
+			
+			var rot = Quaternion.FromToRotation (transform.up, Vector3.up);
+			GetComponent<Rigidbody> ().AddTorque (new Vector3 (rot.x, rot.y, rot.z) * getUpSpeed);
+
+		} else {
+			
 		}
 	}
 
@@ -74,6 +91,17 @@ public class EnemyScript : MonoBehaviour {
 
 	public void setMinigun(GameObject mg){
 		minigun = mg;
+	}
+
+	void OnCollisionEnter(Collision collision){
+		if (collision.gameObject.tag == "Bullet") {
+			takeDamage ();
+			Destroy(collision.gameObject);
+		}
+
+		if (collision.gameObject.tag == "Player") {
+			healthKeeper.SendMessage("takeDamage");	
+		}
 	}
 
 }

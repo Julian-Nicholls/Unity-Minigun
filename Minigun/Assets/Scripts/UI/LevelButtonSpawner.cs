@@ -40,7 +40,7 @@ public class LevelButtonSpawner : MonoBehaviour {
 				buttonText.text = buttons.ToString("X");
 
 				levelLauncher = button.GetComponent<LevelLauncher> ();
-				levelLauncher.setup (buttons, 10, 10);
+				levelLauncher.setup (buttons, buttons, buttons);
 
 				buttons++;
 			}
