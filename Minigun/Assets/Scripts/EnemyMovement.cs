@@ -31,7 +31,14 @@ public class EnemyMovement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		//move towards player OR collapse / fall / ragdoll when hit by boolet OR animate standing up
-		
+
+		if (transform.position.y > 0) {
+			transform.Translate (Vector3.down * Time.fixedDeltaTime * 2);
+		}
+		if (transform.position.y < 0) {
+			transform.Translate (Vector3.up * Time.fixedDeltaTime * 2);
+		}
+
 		if (setPosAndRot) {
 
 			animationSteps = animationSteps + Time.fixedDeltaTime / 2;
@@ -45,10 +52,6 @@ public class EnemyMovement : MonoBehaviour {
 		} else {
 
 			if (rb.isKinematic) {
-
-				if (transform.position.y > 0) {
-					transform.Translate (Vector3.down * Time.fixedDeltaTime * 2);
-				}
 
 				timer = timer + Time.deltaTime;
 				if (timer > timerLimit) {
